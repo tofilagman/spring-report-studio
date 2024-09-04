@@ -1,0 +1,91 @@
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between"> 
+        <h4 class="card-title">{{data.name}}</h4>
+        <div class="btn-group" role="group" aria-label="Basic example"> 
+          <button type="button" class="btn btn-outline-primary" (click)="test()"><i class="fas fa-eye"></i>
+            Test</button> 
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary" (click)="save()"><i class="fas fa-save"></i> Save</button>
+            <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="javascript:;" (click)="import()"><i class="fas fa-file-import"></i> Import</a></li> 
+              <li><a class="dropdown-item" href="javascript:;" (click)="export()"><i class="fas fa-file-export"></i> Export</a></li> 
+            </ul> 
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div [ngClass]="showResult ? 'col-md-6': 'col-md-12'">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Pre Request - Code</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="dta-tab" data-bs-toggle="tab" data-bs-target="#data-tab-pane" type="button"
+                  role="tab" aria-controls="data-tab-pane" aria-selected="true">Pre Request - Data</button>
+              </li> 
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="script-tab" data-bs-toggle="tab" data-bs-target="#script-tab-pane"
+                  type="button" role="tab" aria-controls="script-tab-pane" aria-selected="false">Post Request - Code</button>
+              </li> 
+              <div class="form-check form-switch report-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                  [(ngModel)]="showResult">
+              </div>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0"> 
+                <div style="height: 80vh">
+                  <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="data.preRequest" style="height: 100%"
+                    (onInit)="onCodeInit($event)"></ngx-monaco-editor>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="data-tab-pane" role="tabpanel" aria-labelledby="data-tab" tabindex="2">
+                <div style="height: 80vh">
+                  <ngx-monaco-editor [options]="dataEditorOptions" [(ngModel)]="data.preRequestData"
+                    style="height: 100%" (onInit)="onCodeInit($event)"></ngx-monaco-editor>
+                </div>
+              </div> 
+              <div class="tab-pane fade" id="script-tab-pane" role="tabpanel" aria-labelledby="script-tab" tabindex="2">
+                <div style="height: 80vh">
+                  <ngx-monaco-editor [options]="scriptOptions" [(ngModel)]="data.postRequest" style="height: 100%"
+                    (onInit)="onCodeInit($event)"></ngx-monaco-editor>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="showResult">
+            <ul class="nav nav-tabs" id="myTabLogs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="log-tab" data-bs-toggle="tab" data-bs-target="#log-tab-pane"
+                  type="button" role="tab" aria-controls="log-tab-pane" aria-selected="true">Logs</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pdf-tab" data-bs-toggle="tab" data-bs-target="#pdf-tab-pane"
+                  type="button" role="tab" aria-controls="pdf-tab-pane" aria-selected="true">PDF</button>
+              </li>  
+            </ul>
+            <div class="tab-content" id="logTabContent">
+              <div class="tab-pane fade show active" id="log-tab-pane" role="tabpanel" aria-labelledby="log-tab"
+                tabindex="0"> 
+                <div style="height: 80vh">
+                  <ngx-monaco-editor [options]="resultEditorOptions" [(ngModel)]="data.result"
+                    style="height: 100%" (onInit)="onCodeInit($event)"></ngx-monaco-editor>
+                </div>
+              </div> 
+              <div class="tab-pane fade" id="pdf-tab-pane" role="tabpanel" aria-labelledby="pdf-tab"
+                tabindex="0"> 
+                <pdfviewer [base64Data]="data.pdf" height="85vh"></pdfviewer>
+              </div> 
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

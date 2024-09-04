@@ -1,0 +1,25 @@
+
+
+.mw-c {
+  min-width: fit-content !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+.app-modal {
+  .modal-body {
+    max-height: 75vh;
+    min-height: 40vh;
+  }
+}
+
+.bootstrap-switch-container span {
+  overflow-wrap: normal;
+}
+
+img:before {
+  content: ' '; 
+  background-color: white;
+}

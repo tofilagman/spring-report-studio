@@ -1,0 +1,29 @@
+<div class="dp-hidden position-absolute">
+    <div class="input-group">
+        <input name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker" [autoClose]="'outside'"
+            (dateSelect)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden"
+            [startDate]="fromValue!" tabindex="-1" />
+        <ng-template #t let-date let-focused="focused">
+            <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                (mouseleave)="hoveredDate = null">
+                {{ date.day }}
+            </span>
+        </ng-template>
+    </div>
+</div>
+<div class="input-group">
+    <input class="form-control" placeholder="mm/dd/yyyy" id="fldfrm-{{name}}" name="fldfrm-{{name}}" #dfrm
+        [value]="formatter.format(fromValue)" (input)="validateFromInput(fromValue, dfrm.value)" [required]="required">
+    <button class="btn btn-outline-primary" (click)="datepicker.toggle()" type="button">
+        <i class="fas fa-calendar"></i>
+    </button>
+
+    <span class="input-group-text" id="basic-addon1">-</span>
+
+    <input class="form-control" placeholder="mm/dd/yyyy" id="fldto-{{name}}" name="fldto-{{name}}" #dto
+        [value]="formatter.format(toValue)" (input)="validateToInput(toValue, dto.value)">
+    <button class="btn btn-outline-primary" (click)="datepicker.toggle()" type="button">
+        <i class="fas fa-calendar"></i>
+    </button>
+</div>

@@ -1,0 +1,35 @@
+<div class="container-fluid app-modal">
+    <form (ngSubmit)="onSubmit()" ngNativeValidate (keydown.enter)="onFormEnter()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Request Log</h4>
+        </div>
+        <div class="modal-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Request Payload</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="dta-tab" data-bs-toggle="tab" data-bs-target="#data-tab-pane" type="button"
+                    role="tab" aria-controls="data-tab-pane" aria-selected="true">Logs</button>
+                </li> 
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                  tabindex="0"> 
+                  <div style="height: 65vh"> 
+                    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="data.endpoint" style="height: 100%" name="fendpoint"></ngx-monaco-editor>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="data-tab-pane" role="tabpanel" aria-labelledby="data-tab" tabindex="2">
+                    <div style="height: 65vh"> 
+                        <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="data.responseData" style="height: 100%" name="fresponse"></ngx-monaco-editor>
+                      </div>
+                </div> 
+              </div>
+        </div>
+        <div class="modal-footer"> 
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close( )">Close</button>
+        </div>
+    </form>
+</div>

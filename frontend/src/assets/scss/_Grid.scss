@@ -1,0 +1,12 @@
+
+.grid-container {
+  padding: 0;
+
+  ag-grid-angular {
+    height: 63vh;
+
+    .ag-cell-value {
+      text-overflow: unset;
+    }
+  }
+}

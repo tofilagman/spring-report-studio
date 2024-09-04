@@ -1,0 +1,13 @@
+<div class="input-group input-group-sm">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Page</span>
+  <select class="form-select mw-c" id="inputGroupSelect02" [(ngModel)]="skip" (change)="valueChanged()">
+    <option *ngFor="let pg of pageItems" model.bind="pg">{{pg}}</option>
+  </select>
+  <span class="input-group-text" id="inputGroup-sizing-sm">of</span>
+  <select class="form-select mw-c" id="inputGroupSelect02" [(ngModel)]="take" (change)="valueChanged()">
+    <option model.bind="10">10</option>
+    <option model.bind="30">30</option>
+    <option model.bind="50">50</option>
+  </select>
+  <span class="input-group-text" id="inputGroup-sizing-sm">{{recordStatus}}</span>
+</div>

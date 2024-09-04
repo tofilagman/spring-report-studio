@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{uploadTitle}}</h4>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <div class="file-upload">
+          <div class="image-upload-wrap" *ngIf="file === null">
+            <input class="file-upload-input" type='file' (change)="onFileChange($event)" #input />
+            <div class="drag-text">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <div>Drag and drop a file here or click</div>
+              <div>Accepts: {{getValidFileDisplay()}}</div>
+            </div>
+          </div>
+          <div class="file-upload-content" *ngIf="file !== null">
+            <h5>{{file.name}} {{file.size / 1000}} kb</h5>
+            <p>Last Modified: {{file.lastModifiedDate}}</p>
+            <div class="image-title-wrap">
+              <button type="button" (click)="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded File</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="file !== null">
+      <div class="col">
+        <div class="alert alert-info" role="alert">
+          {{data.status}}
+        </div>
+        <div class="progress">
+          <div class="progress-bar bg-info" role="progressbar" [style.width.%]="data.percent" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="file !== null && !startDisabled">
+      <div class="col align-items-end">
+        <br />
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" class="btn btn-outline-primary" (click)="uploadFile()">Start</button>
+        </div>
+      </div>
+    </div>
+    <div class="row log-box" *ngIf="data.error != null">
+      <div class="col align-items-end">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Error Log</h5>
+            <div class="card-text">
+              <div class="alert alert-danger" role="alert">
+                <div [innerHTML]="data.error"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+</div>

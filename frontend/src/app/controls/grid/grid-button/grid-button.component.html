@@ -1,0 +1,7 @@
+<div class="btn-group btn-group-sm" role="group">
+  <ng-container *ngFor="let btn of params.buttons">
+    <button *ngIf="isVisible(btn)" (click)="btnClickedHandler(btn)" type="button" class="btn"
+            [ngClass]="btn.cssClass ? btn.cssClass : 'btn-outline-primary'"
+            title="{{btn.title}}"><i class="fas {{btn.icon}}"></i></button>
+  </ng-container>
+</div>

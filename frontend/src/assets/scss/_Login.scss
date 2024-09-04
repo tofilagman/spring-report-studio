@@ -1,0 +1,25 @@
+
+
+.login-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.login-logo {
+  background-image: url("../images/innerwheel.png");
+  width: 150px;
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain; 
+}
+
+.login-content{
+  background-color: #5278e3;
+  background-image: linear-gradient(to top, transparent, #5278e3), url("../images/sigmund.jpg");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}

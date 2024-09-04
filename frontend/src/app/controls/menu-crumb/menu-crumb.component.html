@@ -1,0 +1,8 @@
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item" *ngFor="let crb of crumbs; let $last = last" [ngClass]="$last ? 'active': ''">
+    <span *ngIf="$last; else ntc">{{crb}}</span>
+    <ng-template #ntc>
+      <a href="#!">{{crb}}</a>
+    </ng-template>
+  </li>
+</ol>

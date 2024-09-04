@@ -1,0 +1,50 @@
+<div class="container-fluid app-modal">
+    <form (ngSubmit)="onSubmit()" ngNativeValidate (keydown.enter)="onFormEnter()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Document Info</h4>
+        </div>
+        <div class="modal-body"> 
+            <div class="mb-3">
+                <label for="fname" class="form-label">Name</label>
+                <input type="text" class="form-control" id="fname" required [(ngModel)]="data.name" name="name"
+                    placeholder="eg: Awesome PDF Template" />
+            </div>
+            <div class="mb-3">
+                <label for="fort" class="form-label">Orientation</label>
+                <select id="fort" class="form-select" [(ngModel)]="data.orientation" name="fort" required> 
+                    <option *ngFor="let ort of orientationTypes" [value]="ort.id">
+                        {{ort.name}}
+                        </option>
+              </select>
+            </div>
+            <div class="mb-3">
+                <label for="ford" class="form-label">Document Type</label>
+                <select id="ford" class="form-select" [(ngModel)]="data.documentType" name="ford" required>
+                    <option *ngFor="let doc of documentTypes" [value]="doc.id">
+                    {{doc.name}}
+                    </option>
+              </select>
+            </div>
+            <div class="mb-3">
+                <label for="ford" class="form-label">Margin</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">Left</span>
+                    <input type="text" class="form-control" id="mleft" [(ngModel)]="data.mLeft" name="mLeft"/>
+                    <span class="input-group-text" id="basic-addon2">Right</span>
+                    <input type="text" class="form-control" id="mright" [(ngModel)]="data.mRight" name="mRight"/>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon2">Top</span>
+                    <input type="text" class="form-control" id="mtop" [(ngModel)]="data.mTop" name="mTop" />
+                    <span class="input-group-text" id="basic-addon2">Bottom</span>
+                    <input type="text" class="form-control" id="mbottom" [(ngModel)]="data.mBottom" name="mBottom" />
+                </div>  
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close(hasChanges)">{{hasChanges ?
+                'Close' : 'Cancel'}}</button>
+        </div>
+    </form>
+</div>

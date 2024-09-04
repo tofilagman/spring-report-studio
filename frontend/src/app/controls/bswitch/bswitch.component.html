@@ -1,0 +1,13 @@
+<div [ngClass]="getWrapperClasses()" [style.width]="(handleWidth  + labelWidth ) +'px'">
+    <div #container [ngClass]="baseClass + '-container'"
+         [style.width]="((handleWidth * 2) + labelWidth) +'px'"
+         [style.margin-left]="getLabelMarginLeft()">
+            <span #on [innerHTML]="(inverse) ? offText : onText"
+          [ngClass]="(inverse) ? getOffClasses() : getOnClasses()"></span>
+            <span #label [ngClass]="baseClass + '-label'">&nbsp;{{ labelText }}</span>
+            <span #off [innerHTML]="(inverse) ? onText : offText"
+          [ngClass]="(inverse) ? getOnClasses() : getOffClasses()"></span>
+            <input type="checkbox" [(ngModel)]="value" [readonly]="readonly" [disabled]="disabled"
+               (focus)="onFocus()" (blur)="onBlur()">
+    </div>
+</div>

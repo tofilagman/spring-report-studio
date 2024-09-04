@@ -1,0 +1,51 @@
+.dashboard {
+    .ticker-row {
+        position: relative;
+ 
+        .incomp {
+            position: absolute;
+            background: red;
+            width: 15px;
+            height: 15px;
+            border-radius: 50px;
+            left: 0;
+            top: 0;
+        }
+    }
+
+    .policy-icon {
+        border: 1px solid black;
+        border-radius: 25px;
+        padding: 12px;
+        margin: 0 10px;
+        width: 50px;
+        text-align: center;
+
+        &.sold {
+            border-color: #c482ee;
+            color: #c482ee;
+        }
+
+        &.business {
+            border-color: #ee82bd;
+            color: #ee82bd;
+        }
+
+        &.premium {
+            border-color: #8292ee;
+            color: #8292ee;
+        }
+    }
+
+    .sold-subtext {
+        font-size: 12px !important;
+    }
+
+    .w-20 {
+        width: 20% !important;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+}

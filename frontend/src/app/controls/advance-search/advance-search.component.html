@@ -1,0 +1,128 @@
+<div class="container-fluid" #container>
+
+  <!-- Basic search field, advanced-toggler-button, outside content -->
+  <div class="row search-container basic-container">
+
+    <!-- Basic search field, advanced-toggler-button -->
+    <div class="col">
+      <div class="row">
+        <!-- Basic search -->
+        <div class="col-md-6 search-col">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" type="text" [(ngModel)]="searchTerm.simpleSearchTerm"
+                (keyup)="this.outputUpdate()" [disabled]="searchTerm.searchMode !== 'simple'" id="fsimple"
+                [placeholder]="simpleFieldLabel">
+              <button class="btn btn-outline-primary" *ngIf="searchTerm.simpleSearchTerm" aria-label="Clear"
+                (click)="clearBasicTerm()">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Advanced search toggler -->
+        <div class="col-md-3 search-col search-extra-col advanced-search-col" (click)="toggleSearchMode()">
+          <span class="advanced-search-col-label" *ngIf="searchTerm.searchMode === 'simple'" [@inOutAnimModelabelAdv]>
+            <i class="fas fa-chevron-down"></i>&nbsp;
+            Advanced Search
+          </span>
+          <span class="advanced-search-col-label" *ngIf="searchTerm.searchMode === 'advanced'" [@inOutAnimModelabelBas]>
+            <i class="fas fa-chevron-up"></i>&nbsp;
+            Basic Search
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced search -->
+  <div class="row search-container advanced-container" *ngIf="searchTerm.searchMode === 'advanced'"
+    [@inOutAnimAdvsearch]="{value: '',params: {maxHeight: advancedFieldHeight}}">
+
+    <!-- Search link toggle -->
+    <div class="col advanced-search-link-display" (click)="toggleAdvancedLink()">
+      <span style="transform: rotate(-90deg);" *ngIf="searchTerm.advancedSearchLink === 'and'">AND</span>
+      <span style="transform: rotate(-90deg);" *ngIf="searchTerm.advancedSearchLink === 'or'">OR</span>
+    </div>
+
+    <div class="col advanced-termrow-container">
+
+      <!-- Term rows -->
+      <div class="advanced-search-termrow" *ngFor="let term of searchTerm.advancedTerms">
+
+        <div class="advanced-search-column">
+          <div class="form-group">
+            <select id="ftermadv" class="form-select" [(ngModel)]="term.fieldName" (change)="updateTermField(term)"
+              name="ftermadv">
+              <option *ngFor="let header of headers" [value]="header.id">
+                {{header.displayText}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="advanced-search-negate" (click)="termNegate(term)">
+          <span class="advanced-search-negate-label" *ngIf="!term.isNegated">is</span>
+          <span class="advanced-search-negate-label" *ngIf="term.isNegated">is not</span>
+        </div>
+
+        <div class="advanced-search-crit">
+          <div class="form-group">
+            <select id="fcritadv" class="form-select" [(ngModel)]="term.action" (change)="this.outputUpdate()"
+              name="fcritadv">
+              <option *ngFor="let act of term?.actions || actions" [value]="act.id">
+                {{act.name}}
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="advanced-search-term" [ngSwitch]="term.fieldType">
+          <div class="form-group" *ngSwitchCase="'lookup'">
+            <select id="ftermlookupinpadv" class="form-select" [ngModel]="term.searchTerm"
+              (ngModelChange)="this.termLookupUpdate(term, $event)" name="ftermlookupinpadv">
+              <option [value]="null">Select</option>
+              <option *ngFor="let item of term?.list" [value]="item.id">
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group" *ngSwitchCase="'date'">
+            <div id="ftermdate" class="input-group" date-picker [fieldValue]="term.searchTerm"
+              (fieldValueChange)="termLookupUpdate(term, $event)"></div>
+          </div>
+          <div class="form-group" *ngSwitchCase="'boolean'">
+            <div>
+              <bSwitch [ngModel]="term.searchTerm"  
+                (changeState)="termLookupUpdate(term, $event)">
+              </bSwitch>
+            </div>
+          </div>
+          <div class="form-group" *ngSwitchDefault>
+            <input id="fterminpadv" class="form-control" type="text" [(ngModel)]="term.searchTerm"
+              (keyup)="this.outputUpdate()" placeholder="Search term">
+          </div>
+        </div>
+
+        <div class="advanced-search-delrow" (click)="delTermRow(term.id)">
+          <i class="fas fa-trash-alt"></i>&nbsp;
+          Delete
+        </div>
+
+      </div>
+
+      <!-- New row button -->
+      <div class="row advanced-search-termrow">
+        <div class="col-3 advanced-search-newrow" (click)="addTermRow()">
+          <i class="fas fa-plus"></i>
+          Add new row
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

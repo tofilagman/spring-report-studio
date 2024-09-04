@@ -1,0 +1,86 @@
+<div class="sb-nav-fixed" [class.sb-sidenav-toggled]="sideBar$ | async">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="/">Optima - PDF Manager</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"
+            (click)="sideBarToggle()"><i
+      class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"> 
+    </form>
+     <!-- Navbar-->
+     <!-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+           aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> -->
+          <!-- <li><a class="dropdown-item" href="javascript:;" (click)="resetPassword()">Reset Password</a></li>
+          <li><a class="dropdown-item" href="javascript:;" (click)="controlPanel()">Control Panel</a></li>
+          <li><a class="dropdown-item" href="javascript:;" (click)="jobs()">Jobs</a></li>
+          <li>
+            <hr class="dropdown-divider"/>
+          </li> -->
+          <!-- <li><a class="dropdown-item" href="javascript:;" (click)="logOut()">Logout</a></li>
+        </ul>
+      </li>
+    </ul> -->
+    <!-- Navbar--> 
+  </nav>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav"> 
+            <div class="sb-sidenav-menu-heading">General</div>
+            <a class="nav-link"  routerLink="dashboard">
+              <div class="sb-nav-link-icon"><i class="fas fa-dashboard"></i></div>
+               Dashboard
+            </a>
+            <a class="nav-link"  routerLink="my-templates">
+              <div class="sb-nav-link-icon"><i class="fas fa-file-pdf"></i></div>
+              Templates
+            </a>
+            <a class="nav-link"  routerLink="endpoints">
+              <div class="sb-nav-link-icon"><i class="fas fa-bolt"></i></div>
+               Endpoints
+            </a>
+            <a class="nav-link"  routerLink="request-logs">
+              <div class="sb-nav-link-icon"><i class="fas fa-cookie-bite"></i></div>
+               Request Logs
+            </a>
+            <hr/>
+            <a class="nav-link" (click)="logOut()" style="cursor: pointer;">
+              <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
+              Log Out
+            </a>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small">Logged in as:</div>
+          {{profile.user}}
+        </div>
+      </nav>
+    </div>
+    <div id="layoutSidenav_content">
+      <ngx-spinner [fullScreen]="false" [name]="adminLoader" type="timer"></ngx-spinner>
+      <main>
+        <router-outlet></router-outlet>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Optima Solutions 2023</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<app-toast aria-live="polite" aria-atomic="true"></app-toast>

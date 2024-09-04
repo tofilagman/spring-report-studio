@@ -1,0 +1,46 @@
+<div class="container-fluid app-modal">
+    <form (ngSubmit)="onSubmit()" ngNativeValidate (keydown.enter)="onFormEnter()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Endpoint Info</h4>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="fname" class="form-label">Name</label>
+                <input type="text" class="form-control" id="fname" required [(ngModel)]="data.name" name="name"
+                    placeholder="eg: Hubspot " />
+            </div>
+            <div class="mb-3">
+                <label for="fort" class="form-label">Render Type</label>
+                <select id="fort" class="form-select" [(ngModel)]="data.renderType" name="fort" required>
+                    <option *ngFor="let ort of renderTypes" [value]="ort.id">
+                        {{ort.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="ford" class="form-label">Template</label>
+                <select id="ford" class="form-select" [(ngModel)]="data.idTemplate" name="ford" required>
+                    <option *ngFor="let doc of templates" [value]="doc.id">
+                        {{doc.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="fincdate">Expiry Date</label>
+                <div id="fincdate" class="input-group" date-picker [fieldValue]="data.expiresIn"
+                    (fieldValueChange)="expiresInDateChanged($event)" fieldRequired="false"></div>
+                    <div id="emailHelp" class="form-text">Leave as blank to never expire</div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="factive" [(ngModel)]="data.isActive"
+                    name="isActive">
+                <label class="form-check-label" for="factive">Active</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close(hasChanges)">{{hasChanges ?
+                'Close' : 'Cancel'}}</button>
+        </div>
+    </form>
+</div>

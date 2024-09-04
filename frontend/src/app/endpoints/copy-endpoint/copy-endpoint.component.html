@@ -1,0 +1,15 @@
+<div class="container-fluid app-modal">
+    <form (ngSubmit)="onSubmit()" ngNativeValidate (keydown.enter)="onFormEnter()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Endpoint</h4>
+        </div>
+        <div class="modal-body"> 
+          <div style="height: 40vh">
+            <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="data" style="height: 100%" name="fendpoint"></ngx-monaco-editor>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Close</button>
+        </div>
+    </form>
+</div>

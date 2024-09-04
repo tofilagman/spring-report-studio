@@ -1,0 +1,6 @@
+<input class="form-control" placeholder="mm/dd/yyyy"
+       id="fld-{{name}}" [readonly]="readonly" [ngModel]="value" (ngModelChange)="valueChange($event)"
+       name="{{name}}" ngbDatepicker #d="ngbDatepicker" [required]="required">
+<button class="btn btn-outline-primary" (click)="d.toggle()" type="button" [disabled]="readonly">
+  <i class="fas fa-calendar"></i>
+</button>

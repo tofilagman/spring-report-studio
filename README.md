@@ -1,5 +1,5 @@
 # spring-report-studio
-![Github Issues](https://img.shields.io/github/issues/tofilagman/spring-report-studio.svg) ![Github Stars](https://img.shields.io/github/stars/tofilagman/spring-report-studio.svg) ![Java](https://img.shields.io/badge/java-100%25-brightgreen.svg) ![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)
+![Github Issues](https://img.shields.io/github/issues/tofilagman/spring-report-studio.svg) ![Github Stars](https://img.shields.io/github/stars/tofilagman/spring-report-studio.svg) ![Java](https://img.shields.io/badge/java-100%25-brightgreen.svg) ![LICENSE](https://img.shields.io/badge/license-apache2.0-blue.svg)
 
 # about spring-report-studio
 

@@ -1,0 +1,30 @@
+<div class="container-fluid app-modal">
+    <form (ngSubmit)="onSubmit()" ngNativeValidate (keydown.enter)="onFormEnter()">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Resources</h4>
+        </div>
+        <div class="modal-body">
+            <div style="height: 70vh" class="p-3 m-0 border-0 bd-example m-0 border-0"> 
+                <div class="row">
+                    <div *ngFor="let p of list" class="col-3 mx-2 mb-2">
+                        <img [src]="buildUrl(p)" width="100%" height="100%" class="bd-placeholder-img rounded" [contextMenu]="oneContextMenu" [contextMenuValue]="p" /> 
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="modal-footer modal-footer-space-between">
+            <button type="button" class="btn btn-primary" (click)="upload()">Add New</button>
+            <div>
+                <button type="submit" class="btn btn-primary mx-2">Submit</button>
+                <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancel</button>
+            </div>
+        </div>
+    </form> 
+</div>
+<context-menu #oneContextMenu> 
+    <ng-template contextMenuItem [passive]="true"> 
+      <span class="menu-item-title">Action</span>
+    </ng-template>  
+    <ng-template contextMenuItem (execute)="copyLinkItem($event)" let-value>Copy Link</ng-template>
+    <ng-template contextMenuItem (execute)="deleteItem($event)" let-value>Delete</ng-template> 
+  </context-menu>

@@ -1,0 +1,20 @@
+<ul class="nav nav-tabs" id="dataTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="data-ui-tab" data-bs-toggle="tab" data-bs-target="#data-ui-tab-pane" type="button"
+            role="tab" aria-controls="data-ui-tab-pane" aria-selected="true">Data Presentation</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="data-json-tab" data-bs-toggle="tab" data-bs-target="#data-json-tab-pane" type="button"
+            role="tab" aria-controls="data-json-tab-pane" aria-selected="true">JSON</button>
+    </li>
+</ul>
+<div class="tab-content" id="dataTabContent">
+    <div class="tab-pane fade show active" id="data-ui-tab-pane" role="tabpanel" aria-labelledby="data-ui-tab" tabindex="0">
+        <json-editor [options]="editorOptions" [data]="uiData" (change)="getData($event)"></json-editor>
+    </div>
+    <div class="tab-pane fade" id="data-json-tab-pane" role="tabpanel" aria-labelledby="data-json-tab" tabindex="2">
+        <div style="height: 70vh">
+            <ngx-monaco-editor [options]="dataEditorOptions" [(ngModel)]="data" style="height: 100%"></ngx-monaco-editor>
+        </div>
+    </div>
+</div>
